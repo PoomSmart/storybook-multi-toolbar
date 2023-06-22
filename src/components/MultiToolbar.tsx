@@ -92,6 +92,7 @@ const MultiToolbar: React.FC<Props> = ({ toolbar }) => {
     >
       <IconButton active={active} title={toolbar.description || toolbar.name}>
         <Icons icon={toolbar.icon || 'structure'} />
+        {toolbar.title ? `\xa0${toolbar.title}` : null}
       </IconButton>
     </WithTooltip>
   );

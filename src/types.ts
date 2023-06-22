@@ -43,6 +43,7 @@ export type MultiToolbarList = MultiToolbarListNormal | MultiToolbarListToggle;
 export type MultiToolbarParams = {
   param: string;
   name: string;
+  title?: string;
   description?: string;
   icon?: IconKey;
   lists: MultiToolbarList[];
