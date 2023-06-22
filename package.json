@@ -12,15 +12,15 @@
     "storybook-addons",
     "storybook"
   ],
-  "author": "Kris Skarbo",
+  "author": "Kris Skarbo & PoomSmart",
   "license": "ISC",
-  "homepage": "https://github.com/Skarbo/storybook-multi-toolbar",
+  "homepage": "https://github.com/PoomSmart/storybook-multi-toolbar",
   "bugs": {
-    "url": "https://github.com/Skarbo/storybook-multi-toolbar/issues"
+    "url": "https://github.com/PoomSmart/storybook-multi-toolbar/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Skarbo/storybook-multi-toolbar.git"
+    "url": "https://github.com/PoomSmart/storybook-multi-toolbar.git"
   },
   "scripts": {
     "build": "npm run clean && NODE_ENV=production npm run build:files && npm run build:types",

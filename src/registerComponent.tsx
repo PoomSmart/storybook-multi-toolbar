@@ -8,7 +8,6 @@ addons.register(ADDON_ID, () => {
   addons.add(ADDON_ID, {
     title: 'Multi toolbar',
     type: types.TOOL,
-    match: ({ viewMode }) => viewMode === 'story',
     render: () => <MultiTool />,
   });
 });
