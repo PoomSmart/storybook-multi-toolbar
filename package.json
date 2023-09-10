@@ -1,6 +1,6 @@
 {
   "name": "storybook-multi-toolbar",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Storybook addon to define multiple toggleable toolbar items",
   "main": "dist/preset.js",
   "types": "dist/@types/types",
@@ -31,7 +31,7 @@
     "lint": "eslint \"./{src,.storybook,stories}/**/*.{ts,tsx}\"",
     "prepare": "npm run lint && npm run typecheck && npm run build",
     "preversion": "npm run prepare",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 --no-manager-cache",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

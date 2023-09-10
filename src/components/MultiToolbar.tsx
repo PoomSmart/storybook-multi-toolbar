@@ -1,5 +1,7 @@
 import type { MultiToolbarList, MultiToolbarParams } from '../types';
+import { addons } from '@storybook/addons';
 import { useGlobals, useGlobalTypes } from '@storybook/api';
+import { FORCE_RE_RENDER } from '@storybook/core-events';
 import React, { useCallback, useEffect, useState } from 'react';
 import { IconButton, Icons, WithTooltip } from '@storybook/components';
 import MultiToolbarLists from './MultiToolbarLists';
@@ -28,7 +30,11 @@ const MultiToolbar: React.FC<Props> = ({ toolbar }) => {
   const [globals, updateGlobals] = useGlobals();
   const [active, setActive] = useState(false);
   const globalTypes = useGlobalTypes();
-  const values = createToolbarValues(globals[toolbar.param] || {});
+
+  const values = React.useMemo(
+    () => createToolbarValues(globals[toolbar.param] || {}),
+    [globals]
+  );
 
   useEffect(() => {
     if (globalTypes[toolbar.param]) {
@@ -39,6 +45,17 @@ const MultiToolbar: React.FC<Props> = ({ toolbar }) => {
     }
   }, [globals, values]);
 
+  useEffect(() => {
+    updateGlobals({
+      ...globals,
+      [toolbar.param]: {
+        ...globalTypes[toolbar.param].defaultValue,
+        ...values,
+      },
+    });
+    addons.getChannel().emit(FORCE_RE_RENDER);
+  }, []);
+
   const onChange = useCallback(
     (list: MultiToolbarList, value: unknown, param: string) => {
       const newValues = {
@@ -48,10 +65,8 @@ const MultiToolbar: React.FC<Props> = ({ toolbar }) => {
           [param]: value,
         },
       };
-      console.log('onChange', value, param, newValues);
       // toggle
       if (list.type === 'toggle') {
-        console.log('value', value, newValues[toolbar.param][param]);
         if (typeof value === 'undefined') {
           if (
             Object.prototype.hasOwnProperty.call(
@@ -59,9 +74,10 @@ const MultiToolbar: React.FC<Props> = ({ toolbar }) => {
               param
             )
           ) {
-            delete newValues[toolbar.param][param];
+            newValues[toolbar.param][param] = !globals[toolbar.param][param];
           } else {
-            newValues[toolbar.param][param] = true;
+            newValues[toolbar.param][param] =
+              !globalTypes[toolbar.param].defaultValue[param];
           }
         } else if (globals?.[toolbar.param]?.[param] === value) {
           delete newValues[toolbar.param][param];
@@ -69,8 +85,8 @@ const MultiToolbar: React.FC<Props> = ({ toolbar }) => {
           newValues[toolbar.param][param] = value;
         }
       }
-      console.log('newValues', value, param, newValues);
       updateGlobals(newValues);
+      addons.getChannel().emit(FORCE_RE_RENDER);
     },
     [values, globals]
   );
