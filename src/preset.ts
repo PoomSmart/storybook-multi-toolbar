@@ -1,4 +1,4 @@
-export function config(entry: string[] = []) {
+export function previewAnnotations(entry: string[] = []) {
   return [...entry, require.resolve('./defaultParameters')];
 }
 
