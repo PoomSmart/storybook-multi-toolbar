@@ -5,6 +5,7 @@ const multiToolbarParameters: MultiToolbarParameters = {
     {
       param: 'features',
       name: 'Features',
+      title: 'Features',
       lists: [
         // toggleable menu items
         {

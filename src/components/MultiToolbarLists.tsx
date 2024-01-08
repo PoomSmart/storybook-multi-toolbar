@@ -1,11 +1,11 @@
 import type { MultiToolbarList, MultiToolbarListItemToggle } from '../types';
 import React, { Fragment } from 'react';
-import { IconKey, Icons, TooltipLinkList } from '@storybook/components';
+import { Icons, IconsProps, TooltipLinkList } from '@storybook/components';
 import { styled } from '@storybook/theming';
 
 const Title = styled.div(({ theme }) => ({
   padding: '7px 15px',
-  fontWeight: theme.typography.weight.black,
+  fontWeight: theme.typography.weight.bold,
 }));
 
 const ItemSeparator = styled.div(() => ({
@@ -22,7 +22,7 @@ type Props = {
 
 const createTextOrIcon = (text: string): React.ReactNode => {
   return text.startsWith('icon:') ? (
-    <Icons icon={text.replace('icon:', '') as IconKey} />
+    <Icons icon={text.replace('icon:', '') as IconsProps['icon']} />
   ) : (
     text
   );

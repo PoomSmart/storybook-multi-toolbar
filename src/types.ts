@@ -1,5 +1,5 @@
-import type { IconKey } from '@storybook/components';
-import { Story } from '@storybook/api';
+import type { IconsProps } from '@storybook/components';
+import { Story } from '@storybook/react';
 
 type MultiToolbarListItemBase = {
   title: string;
@@ -45,7 +45,7 @@ export type MultiToolbarParams = {
   name: string;
   title?: string;
   description?: string;
-  icon?: IconKey;
+  icon?: IconsProps['icon'];
   lists: MultiToolbarList[];
   /** Show separator between previous toolbar */
   separator?: boolean;

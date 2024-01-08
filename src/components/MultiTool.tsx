@@ -1,10 +1,6 @@
-import {
-  Story,
-  useChannel,
-  useParameter,
-  useStorybookApi,
-} from '@storybook/api';
+import { useChannel, useParameter, useStorybookApi } from '@storybook/api';
 import { STORY_RENDERED } from '@storybook/core-events';
+import { Story } from '@storybook/react';
 import { DEFAULT_CONFIG, PARAM_KEY } from '../constants';
 import { Separator } from '@storybook/components';
 import MultiToolbar from './MultiToolbar';
@@ -17,6 +13,7 @@ const createToolbars = (toolbars: MultiToolbarParams[], story: Story) => {
       if (typeof toolbar.filter === 'function') {
         return toolbar.filter(story);
       }
+      // @ts-ignore
       return toolbar.filter.test(story.kind);
     }
     return true;
@@ -34,7 +31,7 @@ const MultiTool: React.FC = () => {
         setToolbars(
           createToolbars(
             multiToolbarConfig.toolbars,
-            api.getCurrentStoryData() as Story
+            api.getCurrentStoryData() as unknown as Story
           )
         ),
     },

@@ -10,4 +10,12 @@ module.exports = {
     es6: true,
   },
   parser: '@typescript-eslint/parser',
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      rules: {
+        "@typescript-eslint/ban-ts-comment": "warn",
+      },
+    },
+  ],
 };

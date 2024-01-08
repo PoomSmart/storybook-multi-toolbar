@@ -106,6 +106,7 @@ const MultiToolbar: React.FC<Props> = ({ toolbar }) => {
       trigger="click"
       closeOnClick
     >
+      {/* @ts-ignore */}
       <IconButton active={active} title={toolbar.description || toolbar.name}>
         <Icons icon={toolbar.icon || 'structure'} />
         {toolbar.title ? `\xa0${toolbar.title}` : null}
