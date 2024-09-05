@@ -1,6 +1,6 @@
 import type { MultiToolbarList, MultiToolbarParams } from '../types';
-import { addons } from '@storybook/addons';
-import { useGlobals, useGlobalTypes } from '@storybook/api';
+import { addons } from '@storybook/manager-api';
+import { useGlobals, useGlobalTypes } from '@storybook/manager-api';
 import { FORCE_RE_RENDER } from '@storybook/core-events';
 import React, { useCallback, useEffect, useState } from 'react';
 import { IconButton, Icons, WithTooltip } from '@storybook/components';
@@ -104,7 +104,7 @@ const MultiToolbar: React.FC<Props> = ({ toolbar }) => {
         />
       )}
       trigger="click"
-      closeOnClick
+      closeOnOutsideClick
     >
       {/* @ts-ignore */}
       <IconButton active={active} title={toolbar.description || toolbar.name}>

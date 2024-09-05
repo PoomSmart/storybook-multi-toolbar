@@ -1,5 +1,5 @@
 import type { IconsProps } from '@storybook/components';
-import { Story } from '@storybook/react';
+import type { StoryFn } from '@storybook/react';
 
 type MultiToolbarListItemBase = {
   title: string;
@@ -49,8 +49,8 @@ export type MultiToolbarParams = {
   lists: MultiToolbarList[];
   /** Show separator between previous toolbar */
   separator?: boolean;
-  /** Filter stories. RegExp tests against <code>Story.kind</code>. */
-  filter?: ((story: Story) => boolean) | RegExp;
+  /** Filter stories. RegExp tests against <code>StoryFn.kind</code>. */
+  filter?: ((story: StoryFn) => boolean) | RegExp;
 };
 
 export type MultiToolbarParameters = {

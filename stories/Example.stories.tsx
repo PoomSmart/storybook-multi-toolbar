@@ -1,5 +1,5 @@
 import Example, { ExampleProps } from './Example';
-import { Meta, Story } from '@storybook/react';
+import type { StoryFn } from '@storybook/react';
 import React from 'react';
 
 export default {
@@ -8,9 +8,9 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-} as Meta;
+};
 
-const Template: Story<ExampleProps> = (args, context) => {
+const Template: StoryFn<ExampleProps> = (args, context) => {
   console.log('context', context);
   return <Example data={context.globals} />;
 };

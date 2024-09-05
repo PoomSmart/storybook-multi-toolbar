@@ -1,13 +1,17 @@
-import { useChannel, useParameter, useStorybookApi } from '@storybook/api';
+import {
+  useChannel,
+  useParameter,
+  useStorybookApi,
+} from '@storybook/manager-api';
 import { STORY_RENDERED } from '@storybook/core-events';
-import { Story } from '@storybook/react';
+import type { StoryFn } from '@storybook/react';
 import { DEFAULT_CONFIG, PARAM_KEY } from '../constants';
 import { Separator } from '@storybook/components';
 import MultiToolbar from './MultiToolbar';
 import React, { Fragment, useState } from 'react';
 import { MultiToolbarParams } from '../types';
 
-const createToolbars = (toolbars: MultiToolbarParams[], story: Story) => {
+const createToolbars = (toolbars: MultiToolbarParams[], story: StoryFn) => {
   return toolbars.filter((toolbar) => {
     if (toolbar.filter) {
       if (typeof toolbar.filter === 'function') {
@@ -31,7 +35,7 @@ const MultiTool: React.FC = () => {
         setToolbars(
           createToolbars(
             multiToolbarConfig.toolbars,
-            api.getCurrentStoryData() as unknown as Story
+            api.getCurrentStoryData() as unknown as StoryFn
           )
         ),
     },
